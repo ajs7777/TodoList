@@ -26,7 +26,7 @@ struct ListRowView: View {
 
 #Preview {
     List{
-        var item1 = ListModel(title: "item1", isCompleted: false)
+        let item1 = ListModel(title: "item1", isCompleted: false)
         ListRowView(item: item1)
     }
 }
