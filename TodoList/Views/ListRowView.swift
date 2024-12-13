@@ -9,16 +9,15 @@ import SwiftUI
 
 struct ListRowView: View {
     
-    @State var item: ListModel
+    @State var item: ItemModel
     
     var body: some View {
         HStack{
             Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
                 .foregroundStyle(item.isCompleted ? Color.green : Color.red)
-                .onTapGesture {
-                    item.isCompleted.toggle()
-                }
+                
             Text(item.title)
+                
             
         }
     }
@@ -26,7 +25,7 @@ struct ListRowView: View {
 
 #Preview {
     List{
-        let item1 = ListModel(title: "item1", isCompleted: false)
+        let item1 = ItemModel(title: "item1", isCompleted: false)
         ListRowView(item: item1)
     }
 }

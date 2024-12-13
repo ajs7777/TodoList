@@ -10,7 +10,7 @@ import Foundation
 class ListViewModel: ObservableObject {
     
     
-    @Published var items: [ListModel] = []
+    @Published var items: [ItemModel] = []
     
     init() {
         getItems()
@@ -18,9 +18,9 @@ class ListViewModel: ObservableObject {
     
     func getItems() {
         let newItems = [
-            ListModel(title: "Go to the store", isCompleted: false),
-            ListModel(title: "Buy Groceries", isCompleted: false),
-            ListModel(title: "Read A Book", isCompleted: false),
+            ItemModel(title: "Go to the store", isCompleted: false),
+            ItemModel(title: "Buy Groceries", isCompleted: false),
+            ItemModel(title: "Read A Book", isCompleted: false),
         ]
         items.append(contentsOf: newItems)
     }
@@ -34,7 +34,13 @@ class ListViewModel: ObservableObject {
     }
     
     func addItem(title: String) {
-        let newItem = [ListModel(title: title, isCompleted: false)]
+        let newItem = [ItemModel(title: title, isCompleted: false)]
         items.append(contentsOf: newItem)
+    }
+    
+    func updateItem(item: ItemModel) {
+        if let index = items.firstIndex(where: { $0.id == item.id }) {
+            items[index] = item.updateCompletion()
+        }
     }
 }
